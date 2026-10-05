@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Cocktail Results</title>
+
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🍹 Cocktail Results</h1>
+
+    <a href="/" class="back-btn">
+        ← Search Again
+    </a>
+
+    <div class="cocktail-grid">
+
+        <% cocktails.forEach(cocktail => { %>
+
+            <div class="cocktail-card">
+
+                <img
+                    src="<%= cocktail.strDrinkThumb %>"
+                    alt="<%= cocktail.strDrink %>"
+                >
+
+                <div class="content">
+
+                    <h2>
+                        <%= cocktail.strDrink %>
+                    </h2>
+
+                    <p>
+                        <strong>Category:</strong>
+                        <%= cocktail.strCategory %>
+                    </p>
+
+                    <p>
+                        <strong>Glass:</strong>
+                        <%= cocktail.strGlass %>
+                    </p>
+
+                    <h3>Ingredients</h3>
+
+                    <ul>
+
+                        <% for (let i = 1; i <= 15; i++) { %>
+
+                            <% 
+                                const ingredient =
+                                cocktail[`strIngredient${i}`];
+
+                                const measure =
+                                cocktail[`strMeasure${i}`];
+                            %>
+
+                            <% if (ingredient) { %>
+
+                                <li>
+                                    <%= measure || "" %>
+                                    <%= ingredient %>
+                                </li>
+
+                            <% } %>
+
+                        <% } %>
+
+                    </ul>
+
+                    <h3>Instructions</h3>
+
+                    <p>
+                        <%= cocktail.strInstructions %>
+                    </p>
+
+                </div>
+
+            </div>
+
+        <% }) %>
+
+    </div>
+
+</div>
+
+</body>
+</html>
